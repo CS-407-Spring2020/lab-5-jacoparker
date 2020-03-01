@@ -3,12 +3,13 @@ package c.sakshi.lab5;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 public class NotesActivity extends AppCompatActivity {
@@ -22,11 +23,12 @@ public class NotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notes);
 
         welcome_message_et = findViewById(R.id.welcome_text_view);
+        username = getIntent().getStringExtra("username");
+
         showWelcomeMessage();
     }
 
     private void showWelcomeMessage() {
-        username = getIntent().getStringExtra("username");
         welcome_message_et.setText("Welcome " + username + "!");
     }
 
@@ -44,6 +46,9 @@ public class NotesActivity extends AppCompatActivity {
                 // do nothing in this milestone
                 break;
             case (R.id.logout_option):
+                SharedPreferences sp =
+                        getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
+                sp.edit().remove(MainActivity.USERNAME_KEY).apply();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
         }
