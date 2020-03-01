@@ -47,7 +47,7 @@ public class DBHelper {
     public void saveNotes(String username, String title, String content, String date) {
         createTable();
         sqLiteDatabase.execSQL(String.format("INSERT INTO notes (username, date, title, content) " +
-                "VALUES ('%s', '%s', '%s', '%s')", username, title, content, date));
+                "VALUES ('%s', '%s', '%s', '%s')", username, date, title, content));
     }
 
     public void updateNotes(String username, String title, String content, String date) {

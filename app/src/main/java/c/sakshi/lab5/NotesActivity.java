@@ -33,7 +33,9 @@ public class NotesActivity extends AppCompatActivity {
 
         // show welcome message, setup GUI components and username
         welcome_message_et = findViewById(R.id.welcome_text_view);
-        username = getIntent().getStringExtra("username");
+        SharedPreferences sp =
+                getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
+        username = sp.getString(MainActivity.USERNAME_KEY, "");
         showWelcomeMessage();
 
         // get the instance of sql lite database and grab user notes
